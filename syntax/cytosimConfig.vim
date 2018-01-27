@@ -15,7 +15,8 @@ syn match commentLight "%.*$"
 syn match commentStrong "%%.*$"
 
 syn region commentBlock start="/\*\*" end="\*/" fold 
-syn region oneBlock matchgroup=separator start="{" end="}" fold transparent contains=commandChar, separator
+syn region templateBlock start="\[\[" end="\]\]" 
+syn region oneBlock matchgroup=separator start="{" end="}" fold transparent contains=commandChar, separator, templateBlock, commentLight, commentStrong
 
 
 hi link actionKeyword Number
@@ -25,5 +26,6 @@ hi link commentStrong Comment
 hi link commentBlock Comment
 hi link separator Keyword
 hi link commandChar Keyword
+hi link templateBlock NonText
 
 let b:current_syntax = "cytosimConfig"
