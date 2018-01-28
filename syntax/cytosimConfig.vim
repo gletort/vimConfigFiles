@@ -18,6 +18,7 @@ syn region commentBlock start="/\*\*" end="\*/" fold
 syn region templateBlock start="\[\[" end="\]\]" 
 syn region oneBlock matchgroup=separator start="{" end="}" fold transparent contains=commandChar, separator, templateBlock, commentLight, commentStrong
 
+hi Ignore ctermfg=242
 
 hi link actionKeyword Number
 hi link objectKeyword Question	

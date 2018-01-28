@@ -19,6 +19,7 @@ syn match numberMB "\s*=*\d*" contains=commandChar
 syn region commentBlock start="/\*\*" end="\*/" fold 
 syn region oneBlock matchgroup=separator start="{" end="}" fold transparent contains=commandChar, separator, rateKeyword, booleanChar, atlogic, numberMB
 
+hi Ignore ctermfg=242
 
 hi link NodeKeyword Type
 hi link rateKeyword Question	
