@@ -18,18 +18,20 @@ syn match aString "\".*\""
 
 syn region commentBlock start="/\*\*" end="\*/" fold 
 syn region templateBlock start="\[\[" end="\]\]" 
-syn region oneBlock matchgroup=separator start="{" end="}" fold transparent contains=commandChar, separator, templateBlock, commentLight, commentStrong, aString
+syn region dispBlock start="display\s*=\s" end="$" contains=commandChar, separator, templateBlock, commentLight, commentStrong, aString contained
+syn region oneBlock matchgroup=separator start="{" end="}" fold transparent contains=commandChar, separator, templateBlock, commentLight, commentStrong, aString, dispBlock
 
-hi Ignore ctermfg=242
+"hi Ignore ctermfg=242
+hi Keyword ctermfg=23
 
-hi link actionKeyword Special
+hi actionKeyword ctermfg=28
 hi link objectKeyword Question	
-hi link commentLight Ignore
-hi link commentStrong Comment
-hi link commentBlock Comment
+hi commentLight ctermfg=242
+hi link commentStrong NonText
+hi link commentBlock NonText
 hi link separator Keyword
 hi link commandChar Keyword
-hi link templateBlock NonText
-hi link aString Number
+hi link templateBlock Comment
+hi aString ctermfg=92
 
 let b:current_syntax = "cytosimConfig"
