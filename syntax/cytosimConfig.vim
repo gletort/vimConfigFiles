@@ -23,6 +23,8 @@ syn region oneBlock matchgroup=separator start="{" end="}" fold transparent cont
 
 "hi Ignore ctermfg=242
 hi Keyword ctermfg=23
+hi LineNr ctermfg=23
+hi CursorLineNr ctermfg=250
 
 hi actionKeyword ctermfg=28
 hi link objectKeyword Question	
