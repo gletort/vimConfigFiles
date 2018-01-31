@@ -6,13 +6,14 @@ if exists("b:current_syntax")
   finish
 endif
 
-syn keyword actionKeyword set new run change read import delete export report mark cut repeat for end call
-syn keyword objectKeyword hand couple single fiber solid aster space simul field nucleus sphere bead bundle fake event
+syn keyword actionKeyword set new run change read import delete export report mark cut repeat for end call nextgroup=objectKeywrod skipwhite
+syn keyword objectKeyword hand couple single fiber solid aster space simul field nucleus sphere bead bundle fake event contained
 
 syn match commandChar "[=;,]"
 syn match separator "[{}()]"
 syn match commentLight "%.*$"
 syn match commentStrong "%%.*$"
+
 
 syn region commentBlock start="/\*\*" end="\*/" fold 
 syn region templateBlock start="\[\[" end="\]\]" 
