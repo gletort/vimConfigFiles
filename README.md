@@ -11,3 +11,9 @@ set foldmethod=syntax
 set syntax=on
 ~~~
 in your file `~/.vimrc` if it is not already configured 
+
+## Vim color scheme
+
+In `colors` folder, a color scheme for vi is available. Below is a snapshot of this color scheme on a `c++` file:
+
+![itsasoa color scheme](./colors/cplusplusColor.png?raw=true "Color scheme itsasoa snapshot") 
