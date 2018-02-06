@@ -22,19 +22,22 @@ syn region templateBlock start="\[\[" end="\]\]"
 syn region dispBlock start="display\s*=\s" end="$" contains=commandChar, separator, templateBlock, commentLight, commentStrong, aString, aNum contained
 syn region oneBlock matchgroup=separator start="{" end="}" fold transparent contains=commandChar, separator, templateBlock, commentLight, commentStrong, aString, dispBlock, aNum
 
-"hi Ignore ctermfg=242
-"hi Keyword ctermfg=23
-hi CursorLineNr ctermbg=bg ctermfg=94
+set background=dark
+hi CursorLineNr ctermbg=0 ctermfg=94
 
-hi link actionKeyword Type
-hi link objectKeyword Statement	
+hi actionKeyword ctermbg=0 ctermfg=12
+hi objectKeyword ctermbg=0 ctermfg=72	
 hi commentLight ctermfg=242
 hi link commentStrong LineNr
+hi Comment ctermbg=0 ctermfg=244
 hi link commentBlock Comment
+hi Operator ctermbg=bg ctermfg=245
 hi link separator Operator
 hi link commandChar Operator
+hi Repeat ctermbg=bg ctermfg=31
 hi link templateBlock Repeat
-hi link aString String
+hi Number ctermbg=0 ctermfg=29
+hi link aString Number
 hi link aNum Number
 
 let b:current_syntax = "cytosimConfig"
