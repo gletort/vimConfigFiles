@@ -1,0 +1,167 @@
+"desactiver le mode compatibilite
+set nocp
+
+" coloration et indentation
+syn on
+set syntax=on
+filetype indent plugin on
+set background=dark
+" choose color scheme
+" itsasoa: from customized color scheme
+colorscheme itsasoa 
+
+"numero de lignes
+set nu
+"activer la souris
+set mouse=a
+
+"defini le style a utiliser pour indenter le code C
+set cinoptions=>s,e0,n0,f0,{0,}0,^0,:s,=s,l0,gs,hs,ps,ts,+s,c3,C0,(2s,us,U0,w0,m0,j0,)20,*30
+"set cinwords=if,else,while,do,for,switch,case si indetation marche pas
+
+
+"afficher les parantheses correspondantes+petit beep quand erreur ?
+set showmatch
+set matchtime=2
+
+" move vertically on visual line (not real line)
+nnoremap j gj
+nnoremap k gk
+
+" highlight last inserted text
+"nnoremap gV `[v`]
+
+"modifier le police
+set guifont=Courier\ 12
+
+"taille des tabulations
+set tabstop =4
+set shiftwidth =4
+set softtabstop =4
+
+"afficher les resultats au fur et a mesure de la saisie de la recherche
+set incsearch
+
+"sensibilite aux maj dans recherche
+set ignorecase
+set smartcase
+
+" Quand un fichier est change en dehors de Vim, il est relu automatiquement
+set autoread
+
+" always display status bar
+set laststatus =2
+" number of line above and bvelow the cursor
+set scrolloff=3
+
+" show current line number and relative numbers of other lines
+set relativenumber
+
+" toggle between number and relativenumber
+function! ToggleNumber()
+     if(&relativenumber == 1)
+        set norelativenumber
+        set number
+    else
+        set relativenumber
+    endif
+endfunc
+nnoremap ,nb :call ToggleNumber()<CR>
+
+" Go inside current file directory
+function! ChangeToFileDirectory()
+	if bufname("") !~ "^ftp://" " C'est impératif d'avoir un fichier local !
+		lcd %:p:h
+	endif
+endfunction
+map ,fd :call ChangeToFileDirectory()<CR>
+
+"                                     
+"correction orthographique
+"set  spelllang =en
+"set  spell
+"set  spellsuggest =6 
+"retaper set spelllang =en,fr la premiere fois
+
+"afficher la ligne contenant le curseur
+set cursorline
+
+"afficher les possibilites lors de la completion
+set wildmenu "affiche le menu
+set  wildmode =list:longest,list:full    "affiche toutes les possibilités
+set  wildignore =*.o,*.r,*.so,*.sl,*.tar,*.tgz    "ignorer certains types de fichiers pour la complétion des includes 
+
+"folder les fonctions
+function! MyFoldFunction()
+		let line = getline(v:foldstart)
+		let sub = substitute(line,'/\*\|\*/\|^\s+', '', 'g')
+		let lines = v:foldend - v:foldstart + 1
+		return v:folddashes.sub.'...'.lines.' Lines...'.getline(v:foldend)
+endfunction
+
+set  foldmethod =syntax    "Réduira automatiquement les fonctions et blocs (#region en C# par exemple)
+autocmd FileType python setlocal foldmethod=indent
+"set foldmethod=indent "Fold according to indentations (usefull for python)
+set  foldtext =MyFoldFunction()    "on utilise notre fonction (optionnel) 
+
+
+
+" Affiche all open files and naviguate through them
+" Download minibufexpl.vim in .vim/plugin folder to use it
+let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavArrows = 1 
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1 
+
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>
+
+
+
+"Plugin pour c++
+set completeopt=menu
+let OmniCpp_SelectFirstItem = 2
+map <C-F11> :!ctags * --c-types=+p --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+"a taper, puis Ctrl+F11
+"” Install OmniCppComplete like described on http://vim.wikia.com/wiki/C++_code_completion
+"” This offers intelligent C++ completion when typing ‘.’ ‘->’ or <C-o>
+"” Load standard tag files
+set tags+=~/.vim/tags/cpp
+set tags+=~/.vim/tags/gl
+set tags+=~/.vim/tags/sdl
+set tags+=~/.vim/tags/qt4
+
+"” Install DoxygenToolkit from http://www.vim.org/scripts/script.php?script_id=987
+let g:DoxygenToolkit_authorName="Gaelle Letort"
+
+
+"let Tlist_Ctags_Cmd="~/ctags58/"
+
+"aller d une methode a l'autre
+nnoremap <C-2> /\v^(\w+\s+)?\w+::\w+\(.*\)  "suivante
+nnoremap <C-8> ?\v^(\w+\s+)?\w+::\w+\(.*\)  "precedente
+
+"Nerd tree
+"autocmd vimenter * NERDTree
+"autocmd vimenter * wincmd p
+"autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"My configs
+"Raccourcis
+ima <C-Tab>  <C-X><C-O> 
+iab  #i #include 
+iab  GaL Gaelle Letort
+iab  brefy /** \brief */
+
+imap <C-debug> #ifdef _DEBUG_ <CR> if (_DEBUG_>0) <CR>	std::cout << "Message" << std::endl; <CR> #endif
+imap <C-V> "+p
+
+iab doentete ###############################################################################<CR>##<CR>##<CR>##<CR>## Parameters:<CR>##<CR>##<CR>############################################################################### 
+
+iab fori for (int i = 0; i < n; i++) {
+iab unamespace using<Space>namespace
+iab attr attribute
+iab debprint printing<Space>level<Space>for<Space>debugagge
+iab versy \version<Space>0.1
+map <C-start> i#ifndef<CR>#define<CR><ESC>:Dox<CR> :DoxAuthor<CR>i<CR>class {<CR>public:<CR>private:<CR>};<CR><CR>#endif

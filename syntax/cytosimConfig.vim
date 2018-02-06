@@ -15,25 +15,26 @@ syn match commentLight "%.*$"
 syn match commentStrong "%%.*$"
 
 syn match aString "\".*\""
+syn match aNum "[0-9]"
 
 syn region commentBlock start="/\*\*" end="\*/" fold 
 syn region templateBlock start="\[\[" end="\]\]" 
-syn region dispBlock start="display\s*=\s" end="$" contains=commandChar, separator, templateBlock, commentLight, commentStrong, aString contained
-syn region oneBlock matchgroup=separator start="{" end="}" fold transparent contains=commandChar, separator, templateBlock, commentLight, commentStrong, aString, dispBlock
+syn region dispBlock start="display\s*=\s" end="$" contains=commandChar, separator, templateBlock, commentLight, commentStrong, aString, aNum contained
+syn region oneBlock matchgroup=separator start="{" end="}" fold transparent contains=commandChar, separator, templateBlock, commentLight, commentStrong, aString, dispBlock, aNum
 
 "hi Ignore ctermfg=242
-hi Keyword ctermfg=23
-hi LineNr ctermfg=23
-hi CursorLineNr ctermfg=250
+"hi Keyword ctermfg=23
+hi CursorLineNr ctermbg=bg ctermfg=94
 
-hi actionKeyword ctermfg=28
-hi link objectKeyword Question	
+hi link actionKeyword Type
+hi link objectKeyword Statement	
 hi commentLight ctermfg=242
-hi link commentStrong NonText
-hi link commentBlock NonText
-hi link separator Keyword
-hi link commandChar Keyword
-hi link templateBlock Comment
-hi aString ctermfg=92
+hi link commentStrong LineNr
+hi link commentBlock Comment
+hi link separator Operator
+hi link commandChar Operator
+hi link templateBlock Repeat
+hi link aString String
+hi link aNum Number
 
 let b:current_syntax = "cytosimConfig"
