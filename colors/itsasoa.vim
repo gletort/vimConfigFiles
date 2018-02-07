@@ -82,10 +82,10 @@
  hi Structure      guibg=bg   guifg=#af5f00      ctermbg=bg  ctermfg=130
  hi link Typedef	Structure  
 
- hi Special    guibg=#8787ff   guifg=#000000      ctermbg=105   ctermfg=0
- hi SpecialChar    guibg=#8787ff   guifg=#000000     ctermbg=105   ctermfg=0
+ hi Special    guifg=#8787ff   guibg=#000000      ctermfg=105   ctermbg=0
+ hi link SpecialChar Special 
  hi Tag        guibg=bg   guifg=#5faf87      ctermbg=bg   ctermfg=72
- hi Delimiter      guibg=#008787   guifg=fg       ctermbg=30   ctermfg=fg
+ hi Delimiter      guifg=#008787   guibg=bg       ctermfg=30   ctermbg=bg
  hi SpecialComment guibg=#5f5f5f  guifg=fg    ctermbg=59   ctermfg=fg
  hi Debug      guibg=#875f5f   guifg=bg  gui=none    ctermbg=95   ctermfg=bg
  hi WildMenu      guibg=#87d7af   guifg=bg  gui=none    ctermbg=115   ctermfg=bg
